@@ -13,7 +13,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { RecetasContext } from "./RecetasContext";
 
-const AgregarRecetas: React.FC = () => {
+const AgregarRecetas = () => {
   const [ingInputText, setIngInputText] = useState("");
   const [nomInputText, setNomInputText] = useState("");
   const [mensajeVisible, setMensajeVisible] = useState(false);

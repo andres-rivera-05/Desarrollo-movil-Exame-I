@@ -15,7 +15,7 @@ type RouteParams = {
   };
 };
 
-const DetallesReceta: React.FC = () => {
+const DetallesReceta = () => {
   const { eliminarReceta } = useContext(RecetasContext);
   const navigation = useNavigation();
   const route = useRoute<RouteProp<RouteParams, "DetallesReceta">>();
