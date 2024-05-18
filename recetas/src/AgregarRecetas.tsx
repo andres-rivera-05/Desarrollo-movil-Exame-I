@@ -8,6 +8,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Alert,
+  Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { RecetasContext } from "./RecetasContext";
@@ -49,21 +50,14 @@ const AgregarRecetas: React.FC = () => {
     setIngInputText("");
     setNomInputText("");
     setMensajeVisible(true);
-
-    setTimeout(() => {
-      setMensajeVisible(false);
-    }, 3000); // Ocultar el mensaje después de 3 segundos
   };
-
-  // const handleContactoPress = (elemento: Receta) => {
-  //   navigation.navigate("Detalles", {
-  //     nombre: elemento.nombre,
-  //     ingredientes: elemento.ingredientes,
-  //   });
-  // };
 
   return (
     <View style={styles.container}>
+      <Image
+        source={require("../assets/icono.png")}
+        style={{ width: 150, height: 150, resizeMode: "contain" }}
+      ></Image>
       <TextInput
         style={styles.input}
         onChangeText={setNomInputText}
@@ -82,10 +76,7 @@ const AgregarRecetas: React.FC = () => {
       )}
       <ScrollView contentContainerStyle={styles.contactList}>
         {recetas.map((elemento) => (
-          <TouchableOpacity
-            key={elemento.recetaID}
-            style={styles.recetaItem}    
-          >
+          <TouchableOpacity key={elemento.recetaID} style={styles.recetaItem}>
             <Text style={styles.recetaName}>{elemento.nombre}</Text>
             <Text style={styles.ingName}>{elemento.ingredientes}</Text>
           </TouchableOpacity>
@@ -99,9 +90,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    padding: 20,
+    padding: 30,
+    justifyContent: "center",
+    alignItems: "center",
   },
   input: {
+    width: '100%',
     height: 40,
     borderColor: "#cccccc",
     borderWidth: 1,
@@ -110,15 +104,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#f5f5f5",
   },
   mensaje: {
+    marginTop: 10,
     fontSize: 16,
     color: "green",
-    marginVertical: 10,
   },
   contactList: {
-    marginTop: 20,
+    marginTop: 5,
+    width: '100%'
   },
   recetaItem: {
     flexDirection: "row",
+    width: '100%',
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 10,
@@ -129,6 +125,7 @@ const styles = StyleSheet.create({
   recetaName: {
     fontSize: 16,
     fontWeight: "bold",
+    marginRight:15,
   },
   ingName: {
     fontSize: 14,

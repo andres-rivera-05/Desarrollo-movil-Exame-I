@@ -4,9 +4,15 @@ import React from 'react'
 export default function Home() {
   return (
     <View style={style.container}>
-      <Image source={require("../assets/icono.png")} style={style.image}></Image>
-      <Text style={style.text}>La aplicación permite a los usuarios agregar nuevas recetas,
-        ver detalles de una receta especifica, y eliminar recetas existentes 
+      <View style={style.containerImg}>
+        <Image
+          source={require("../assets/icono.png")}
+          style={style.image}
+        ></Image>
+      </View>
+      <Text style={style.text}>
+        La aplicación permite a los usuarios agregar nuevas recetas, ver
+        detalles de una receta especifica, y eliminar recetas existentes.
       </Text>
       <Text>Dueño de la aplicación: Cristian Rivera</Text>
     </View>
@@ -16,14 +22,20 @@ export default function Home() {
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    padding: 20,
+    justifyContent: 'center'
+  },
+  containerImg:{
+  justifyContent: 'center',
+  alignItems: 'center'
   },
   image: {
-    width: 200,
-    height: 300,
+    width: 230,
+    height: 230,
+    resizeMode: 'contain'
   },
   text:{
+    textAlign: 'left',
     marginTop: 20
   }
 });

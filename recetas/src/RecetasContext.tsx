@@ -12,13 +12,13 @@ interface RecetasContextProps {
   eliminarReceta: (recetaID: number) => void;
 }
 
-export const RecetasContext = createContext<RecetasContextProps | undefined>(
-  undefined
-);
+  export const RecetasContext = createContext<RecetasContextProps | undefined>(
+    undefined
+  );
 
-interface RecetasProviderProps {
-  children: ReactNode;
-}
+  interface RecetasProviderProps {
+    children: ReactNode;
+  }
 
 export const RecetasProvider: React.FC<RecetasProviderProps> = ({
   children,
@@ -29,11 +29,11 @@ export const RecetasProvider: React.FC<RecetasProviderProps> = ({
     setRecetas((prevRecetas) => [...prevRecetas, receta]);
   };
 
-  const eliminarReceta = (recetaID: number) => {
-    setRecetas((prevRecetas) =>
-      prevRecetas.filter((receta) => receta.recetaID !== recetaID)
-    );
-  };
+    const eliminarReceta = (recetaID: number) => {
+      setRecetas((prevRecetas) =>
+        prevRecetas.filter((receta) => receta.recetaID !== recetaID)
+      );
+    };
 
   return (
     <RecetasContext.Provider value={{ recetas, agregarReceta, eliminarReceta }}>

@@ -1,47 +1,68 @@
-import { View, Text } from "react-native";
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 import Home from "./Home";
 import ListaRecetas from "./ListarRecetas";
 import AgregarRecetas from "./AgregarRecetas";
+import DetallesReceta from "./DetallesReceta";
 import { MaterialIcons } from "@expo/vector-icons";
 
-export default function Navigation() {
-  const tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
+function HomeStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Home" component={Home} />
+    </Stack.Navigator>
+  );
+}
+
+function RecetasStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="ListaRecetas" component={ListaRecetas} />
+      <Stack.Screen name="DetallesReceta" component={DetallesReceta} />
+    </Stack.Navigator>
+  );
+}
+
+export default function Navigation() {
   return (
     <NavigationContainer>
-      <tab.Navigator initialRouteName="Home">
-        <tab.Screen
-          name="Home"
-          component={Home}
+      <Tab.Navigator
+        initialRouteName="HomeStack"
+        screenOptions={{ headerShown: false }}
+      >
+        <Tab.Screen
+          name="HomeStack"
+          component={HomeStack}
           options={{
-            tabBarLabel: "Home",
-            tabBarIcon: (props) => <MaterialIcons name="home" size={24} />,
+            tabBarLabel: () => null,
+            tabBarIcon: () => null,
+            tabBarButton: () => null,
           }}
         />
-        <tab.Screen
+        <Tab.Screen
           name="Agregar Recetas"
           component={AgregarRecetas}
           options={{
-            tabBarLabel: "Agrgegar Recetas",
-            tabBarIcon: (props) => (
-              <MaterialIcons name="home" size={24}></MaterialIcons>
-            ),
+            tabBarLabel: "Agregar Recetas",
+            tabBarIcon: () => <MaterialIcons name="add-circle" size={24} />,
           }}
-        ></tab.Screen>
-        <tab.Screen
-          name="Listar Recetas"
-          component={ListaRecetas}
+        />
+        <Tab.Screen
+          name="Recetas"
+          component={RecetasStack}
           options={{
             tabBarLabel: "Recetas",
-            tabBarIcon: (props) => (
-              <MaterialIcons name="contacts" size={24}></MaterialIcons>
+            tabBarIcon: () => (
+              <MaterialIcons name="format-list-numbered" size={24} />
             ),
           }}
-        ></tab.Screen>
-      </tab.Navigator>
+        />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
